@@ -37,14 +37,20 @@ int Menu (char texto[], int n);
 //Metodos para la cola lineal
 void InsertarCL(ColaLineal *cl);
 Muestra BorrarCL(ColaLineal *cl);
+int ValidaEspacioCL(ColaLineal *cl);
+int ValidaVacioCL(ColaLineal *cl);
 
 //Metodos para la cola circular
-void InsertarCC(ColaCircular *cc);
+void InsertarCC(ColaCircular *cc,Muestra m);
 Muestra BorrarCC(ColaCircular *cc);
+int ValidaEspacioCC(ColaCircular *cc);
+int ValidaVacioCC(ColaCircular *cc);
 
 //Metodos para la pila estatica
-
-
+void Push(Pila *p, Muestra m);
+Muestra Pop(Pila *p);
+int ValidaEspacioP(Pila *p);
+int ValidaVacioP(Pila *p);
 
 
 #endif // METODOS_H_INCLUDED

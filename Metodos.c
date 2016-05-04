@@ -52,8 +52,18 @@ Muestra Borrar(ColaLineal *cl)
     return aux;
 }
 
+int ValidaEspacioCL(ColaLineal *cl)
+{
+    return(cl->tail<cl->max-1);
+}
+
+int ValidaVacioCL(ColaLineal *cl)
+{
+    return(cl->header==-1);
+}
+
 //Metodos para la cola circular
-void InsertarCC(ColaCircular *cc)
+void InsertarCC(ColaCircular *cc,Muestra m)
 {
     if(cc->header==-1)
     {
@@ -65,14 +75,7 @@ void InsertarCC(ColaCircular *cc)
     }
     cc->tail++;
     //Se capturan los datos de la muestra
-    printf("\nNombre de la muestra: ");
-    fflush(stdin);
-    gets(&cc->arreglo[cc->tail].nombre);
-    printf("\nClave de la muestra: ");
-    scanf("%d",&cc->arreglo[cc->tail].clave );
-    printf("\nDepartamento de la muestra: ");
-    fflush(stdin);
-    gets(&cc->arreglo[cc->tail].depto);
+    cc->arreglo[cc->header]=m;
 }
 
 Muestra BorrarCC(ColaCircular *cc)
@@ -91,4 +94,41 @@ Muestra BorrarCC(ColaCircular *cc)
     return aux;
 }
 
+int ValidaEspacioCC(ColaCircular *cc)
+{
+    return !((cc->header&&cc->tail==cc->max)||(cc->tail+1==cc->header));
+}
+
+int ValidaVacioCC(ColaCircular *cc)
+{
+    return (cc->tail==0 || cc->header==-1);
+}
+
+
 //Metodos para la pila estatica
+void Push(Pila *p, Muestra m)
+{
+    p->tope++;
+    p->arreglo[p->tope]=m;
+}
+
+Muestra Pop(Pila *p)
+{
+    Muestra aux;
+    aux=p->arreglo[p->tope];
+    p->tope--;
+    return aux;
+}
+
+int ValidaEspacioP(Pila *p)
+{
+    return p->tope<p->max-1;
+}
+
+int ValidaVacioP(Pila *p)
+{
+    return p->tope==-1;
+}
+
+
+
