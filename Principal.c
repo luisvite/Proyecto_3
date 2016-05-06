@@ -45,49 +45,63 @@ int main()
 
         switch (opcion) {
             case 1: //Se ingresa una muestra a la cola lineal
-                    if(ValidaEspacioCL(cl))
-                        Insertar(cl);
-                    else
-                        printf("\nMuestras de entrada lleno...\n");
+                if(ValidaEspacioCL(cl))
+                {
+                    InsertarCL(cl);
+                }
+                else
+                {
+                    printf("\nMuestras de entrada lleno...\n");
+                }
                 break;
             case 2: //Se ingresa una muestra a la cola circular
                 if(ValidaVacioCL(cl))
+                {
                         printf("\nNo hay muestras para analizar\n");
+                }
+                else
+                {
+                    if(ValidaEspacioCC(cc))
+                    {
+                        aux=BorrarCL(cl);
+                        InsertarCC(cc,aux);
+                        printf("\nAnalizada\n");
+                    }
                     else
                     {
-                        if(ValidaEspacioCC(cc))
-                        {
-                            //aux = Borrar(cl);
-                            //InsertarCC(cc,aux);
-                            //printf("\nAnalizada\n");
-                        }
-                        else
-                            printf("No hay espacio para analizar");
+                        printf("No hay espacio para analizar");
                     }
+                }
                 break;
             case 3://Se ingresa una mustra a la pila
                 if(ValidaVacioCC(cc))
-                        printf("\nNo hay muestras para liberar(Verifique si se analizaron)\n");
+                {
+                    printf("\nNo hay muestras para liberar(Verifique si se analizaron)\n");
+                }
+                else
+                {
+                    if(ValidaEspacioP(p))
+                    {
+                        aux = BorrarCC(cc);
+                        Push(p,aux);
+                        printf("\nLiberada\n");
+                    }
                     else
                     {
-                        if(ValidaEspacioP(p))
-                        {
-                            aux = BorrarCC(cc);
-                            Push(p,aux);
-                            printf("\nLiberada\n");
-                        }
-                        else
-                            printf("\nNo hay espacio para liberar\n");
+                        printf("\nNo hay espacio para liberar\n");
                     }
+                }
                 break;
             case 4://Se saca una muestra de la pila
                 if(ValidaVacioP(p))
+                {
                         printf("\nNo hay muestras para entregar\n");
-                    else
-                    {
-                        printf("\nMuestra entregada...\n");
-                        aux = Pop(p);
-                    }
+                }
+                else
+                {
+                    printf("\nMuestra entregada...\n");
+                    aux = Pop(p);
+                }
                 break;
         }
     }while (opcion != 5);
